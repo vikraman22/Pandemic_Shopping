@@ -26,7 +26,7 @@
           >
             <i class="fas fa-store"></i> Nearby stores</a
           >
-          <button type="button" Style="position: relative; right: -620px" class="btn btn-light" @click="toggleaccept">
+          <button type="button" Style="position: relative; right: -620px" class="btn btn-light" @click="showModal">
            <i class="fas fa-bell"></i>  <b>Notification</b> <span class="badge bg-secondary">0 </span>
           </button>
           <a
@@ -44,9 +44,12 @@
    
   <div class="content">
     
-     <div v-if="showaccept">
-      <Accept/>
-    </div>
+     
+      <Accept  
+      v-show="isModalVisible"
+      @close="closeModal"
+      />
+     
     <router-view />
   </div>
 </template>
@@ -59,18 +62,22 @@ export default {
   name: "Customerhome",
   components:{ Accept},
   setup() {
-    let showaccept=ref(false)
+    
     const router = useRouter();
     const gototab = (tab) => {
     router.push({ name: tab });
     }
-      const toggleaccept = () =>{
-        console.log("dei")
-      showaccept.value = ref(true)
+       //modal
+    let isModalVisible = ref(false)
+    const showModal = () =>{
+      isModalVisible.value= ref(true)
+    }
+    const closeModal = () =>{
+      isModalVisible.value= ref(false)
+       
+    }
       
-      }
-      
-    return { gototab,toggleaccept,showaccept};
+    return { gototab,showModal,closeModal,isModalVisible};
   },
 };
 </script>

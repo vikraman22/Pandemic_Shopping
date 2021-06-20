@@ -59,7 +59,7 @@
       <Signup />
       <center>
         <a @click="switchlogin" style="cursor: pointer; position: relative">
-          <br /><br /><br /><br /><br /><br /><br /><br /><br /><br />Already
+          <br /><br /><br /><br /> <br><br><br /><br /><br /><br /><br /><br />Already
           user ? Login
         </a>
       </center>
@@ -68,8 +68,7 @@
       <Signupshop />
       <center>
         <a @click="switchslogin" style="cursor: pointer; position: relative">
-          <br /><br /><br /><br /><br /><br /><br /><br /><br /><br />Already
-          user ? Login
+           <br><br> <br><br> <br><br><br> <br><br><br> Already user ? Login
         </a>
       </center>
     </div>

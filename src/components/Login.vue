@@ -1,12 +1,12 @@
 <template>
 <div class="login">
-  <form   >
+  <form   @submit.prevent="onSubmit">
     <h5>CUSTOMER LOGIN </h5>
 
-    <input type="number"  placeholder="Phone" required>
+    <input type="email"  placeholder="Email address" v-model="email" required>
 
-    <input placeholder="Password" type="password"  required  >
- 
+    <input placeholder="Password" @keypress="check" v-model="password" type="password"  required  >
+ <div v-if="error" class="error">{{ error }}</div>
     <div class="submit">
       <button>LOGIN</button>
     </div>
@@ -14,8 +14,33 @@
   </div>
 </template>
 <script>
+ import { ref } from 'vue'
+import checkLoginCustomer from '../Composable/checkLoginCustomer.js'
+import { useRouter } from 'vue-router'
+ 
+export default{
+  name:'Login',
+  setup(){
+    const router = useRouter()
+    const { error, login } = checkLoginCustomer()
+      const email = ref('')
+      const password =ref ('')
+        const onSubmit = async() =>{
+           const res = await login(email.value,password.value)
+                if(!error.value){
+                  router.push({ name: "Customerhome" })
+                return res
+                } 
+                
+            }
+            
+        return { onSubmit,email,password, error,ref}
+  }
+
+}
  
 </script>
+
 
 <style scoped> 
 

@@ -2,18 +2,19 @@
 <div class="signup">
   <form   >
     <h5>STORE REGISTARTION</h5>
+    
     <input type="text"  placeholder="Store name" required>
     <input type="text"  placeholder="Owner name" required>
     <input type="number"  placeholder="Phone" required>
     <input placeholder="Password" type="password"  required  >
     <input type="text" placeholder="Locality"  required  >
-    <select>
-      <option value="0">Select District</option>
-      <option value="1">Villupuram</option>
-      <option value="2">Chennai</option>
-      <option value="3">Coimbatore</option>
-      <option value="4">Salem</option>
-      <option value="5">Kanyakumari</option>
+    <select v-model="district">
+      <option selected value="Select District">Select District</option>
+      <option value="Villupuram">Villupuram</option>
+      <option value="Chennai">Chennai</option>
+      <option value="Coimbatore">Coimbatore</option>
+      <option value="Salem">Salem</option>
+      <option value="Kanyakumari">Kanyakumari</option>
     </select>
     <label>Upload Store image</label>
     <input type="file" placeholder="Store image"  required  >
@@ -25,8 +26,15 @@
   </div>
 </template>
 <script>
+import { ref} from "vue";
 export default{
-  name:'Signup'
+  name:'Signup',
+  setup(){
+    let district =ref('Select District')
+
+    
+    return{ref,district}
+  }
 
 }
  
