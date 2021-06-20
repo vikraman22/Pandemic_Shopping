@@ -36,7 +36,7 @@
       ></textarea>
 
       <div class="submit">
-        <button>Create an Account</button>
+        <button >Create an Account</button>
       </div>
       <br />
     </form>
@@ -55,48 +55,27 @@ export default defineComponent({
     const router = useRouter();
     const email = ref('')
     const name = ref('')
-    const password = ref('')
     const mobile = ref('')
+    const password = ref('')
     const locality = ref('')
     const district = ref('Select District')
     const address = ref('')
     
-    const onSumbit = async () => {
-      console.log("helllo")
+    const onSubmit = async () => {
+       
       const res = await signup(email.value,
-      name.value,password.value,
-      mobile.value,address.value,
-      locality.value,district.value);
+      name.value,mobile.value,password.value,
+      locality.value,district.value,address.value);
       if (!error.value) {
         router.push({ name: "Home" });
         return res
       } else {
         error.value = "Registration haven't completed";
       }
-    };
-
-    /*
-//vikram's changes
-
-const customer_info = async() => {
-
-const customer = {
-   
-email : email.value,
-name : name.value,
-mobile : mobile.value,
-password : password.value,
-locality : locality.value,
-district : district.value,
-address : address.value
-}
-
-const res = await projectFirestore.collection('customer').add(customer)
-
-} */
+    }
     return {
       ref,
-      onSumbit,
+      onSubmit,
       error , email, name, mobile, password, 
       locality, district, address,
     };
