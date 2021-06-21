@@ -6,7 +6,11 @@
       <div class="card-body">
         <h5 class="card-title">SHOP NAME</h5>
         <p class="card-text">Shop Address</p>
-        <button @click="gototab('Additem')">SHOP</button>    <button>CONTACT</button>
+
+        <div v-if="showno">
+        <p class="card-text">Mobile number</p>
+        </div>
+        <button @click="gototab('Additem')">SHOP</button>   <button @click="toggleno">CONTACT</button>
       </div>
     </div>
   </div>
@@ -14,16 +18,20 @@
 </template>
 
 <script>
- 
+import {ref} from 'vue' 
 import { useRouter } from 'vue-router';
 export default { 
 name : 'Store',
   setup () {
+    let showno =ref(false)
    const router = useRouter()
    const gototab = tab =>{
      router.push({ name : tab})
    }
-   return{ gototab }
+    const toggleno = () =>{
+     showno.value = !showno.value
+   }
+   return{ gototab,toggleno,showno }
    
   },
 
