@@ -3,13 +3,7 @@
     <!-- Navbar content -->
     <div class="container" style="padding: 0px">
       <nav
-        class="
-          navbar
-          nav-pills-link-active-color:primary
-          navbar-expand-lg navbar-dark
-          bg-dark
-        "
-      >
+        class="navbar nav-pills-link-active-color:primary  navbar-expand-lg navbar-dark bg-dark "  >
         <div class="container-fluid">
           <a
             class="navbar-brand"
@@ -26,8 +20,15 @@
           >
             <i class="fas fa-store"></i> Nearby stores</a
           >
-          <button type="button" Style="position: relative; right: -620px" class="btn btn-light" @click="showModal">
-           <i class="fas fa-bell"></i>  <b>Notification</b> <span class="badge bg-secondary">0 </span>
+          
+          <button
+            type="button"
+            Style="position: relative; right: -620px"
+            class="btn btn-light"
+            
+          >
+            <i class="fas fa-bell"></i> <b>Notification</b>
+            <span class="badge bg-secondary">0 </span>
           </button>
           <a
             class="navbar-brand"
@@ -40,44 +41,32 @@
       </nav>
     </div>
   </nav>
-    
-   
+
   <div class="content">
-    
-     
-      <Accept  
-      v-show="isModalVisible"
-      @close="closeModal"
-      />
-     
+   
+    <Accept />
+   
+
     <router-view />
   </div>
 </template>
 
 <script>
-import {ref} from 'vue'
-import { useRouter } from "vue-router"
-import  Accept from "../components/Accept.vue" 
+/* import { ref } from "vue"; */
+import { useRouter } from "vue-router";
+import Accept from "../components/Accept.vue";
 export default {
   name: "Customerhome",
-  components:{ Accept},
+  components: { Accept },
   setup() {
-    
     const router = useRouter();
     const gototab = (tab) => {
-    router.push({ name: tab });
-    }
-       //modal
-    let isModalVisible = ref(false)
-    const showModal = () =>{
-      isModalVisible.value= ref(true)
-    }
-    const closeModal = () =>{
-      isModalVisible.value= ref(false)
-       
-    }
-      
-    return { gototab,showModal,closeModal,isModalVisible};
+      router.push({ name: tab });
+    };
+    //modal
+    
+    
+    return { gototab  };
   },
 };
 </script>

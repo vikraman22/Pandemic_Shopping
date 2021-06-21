@@ -1,13 +1,17 @@
 <template>
 <div class="signup">
-  <form   >
+  <form   @submit.prevent="onSubmit">
     <h5>STORE REGISTARTION</h5>
-    
-    <input type="text"  placeholder="Store name" required>
-    <input type="text"  placeholder="Owner name" required>
-    <input type="number"  placeholder="Phone" required>
-    <input placeholder="Password" type="password"  required  >
-    <input type="text" placeholder="Locality"  required  >
+     <input
+        type="email"
+        v-model="email"
+        placeholder="Email address"
+        required />
+    <input type="text" v-model="storename"  placeholder="Store name" required>
+    <input type="text" v-model="ownername" placeholder="Owner name" required>
+    <input type="number" v-model="mobile" placeholder="Phone" required>
+    <input placeholder="Password" v-model="password" type="password"  required  >
+    <input type="text" v-model="locality" placeholder="Locality"  required  >
     <select v-model="district">
       <option selected value="Select District">Select District</option>
       <option value="Villupuram">Villupuram</option>
@@ -17,7 +21,7 @@
       <option value="Kanyakumari">Kanyakumari</option>
     </select>
     <label>Upload Store image</label>
-    <input type="file" placeholder="Store image"  required  >
+    <input type="file"  placeholder="Store image"    >
 
     <div class="submit">
       <button>Register Store</button>
@@ -26,17 +30,45 @@
   </div>
 </template>
 <script>
-import { ref} from "vue";
-export default{
+import { ref, defineComponent } from "vue";
+import { useRouter } from "vue-router";
+import postSignupStore from '../Composable/postSignupStore.js'
+export default defineComponent({
   name:'Signup',
   setup(){
-    let district =ref('Select District')
+    const { error, signupstore } = postSignupStore()
+
+    const router = useRouter();
+    const email = ref('')
+    const storename = ref('')
+    const ownername = ref('')
+    const mobile = ref('')
+    const password = ref('')
+    const locality = ref('')
+    const district = ref('Select District')
+     
+    
+    const onSubmit = async () => {
+       
+      const res = await signupstore(email.value,
+      storename.value,ownername.value,mobile.value,password.value,
+      locality.value,district.value );
+      if (!error.value) {
+        alert("Account Registered Sucessufully")
+        router.push({ name: "Home" });
+        return res
+      } else {
+        error.value = "Registration haven't completed";
+      }
+    }
 
     
-    return{ref,district}
+    return{ref, onSubmit,
+      error , email, storename,ownername, mobile, password, 
+      locality, district, }
   }
 
-}
+})
  
 </script>
 

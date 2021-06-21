@@ -1,6 +1,7 @@
 <template>
   <div class="form">
-    <h5>ADD ITEMS</h5><br>
+    <h5>ADD ITEMS</h5>
+    <br />
     <Label>Item name &nbsp;&nbsp; </Label>
     <input required v-model="item" type="text" />
     <Label>&nbsp;&nbsp;Quantity&nbsp;&nbsp;</Label>
@@ -14,7 +15,7 @@
     <br /><br />
     <button @click="additem">Add item</button>
   </div>
-<br>
+  <br />
   <table class="table">
     <thead>
       <tr class="table-dark">
@@ -26,16 +27,20 @@
       </tr>
     </thead>
     <tbody>
-      <tr class="table-primary" v-for="(it,index) in items" :key="it">
+      <tr class="table-primary" v-for="(it, index) in items" :key="it">
         <th scope="row">{{ it.index }}</th>
         <td>{{ it.item }}</td>
         <td>{{ it.quan }}</td>
         <td>{{ it.unit }}</td>
-        <td> <button class="btn" @click="removeitem(index)"> &nbsp;Remove <i class="fas fa-times-circle">&nbsp;</i></button> </td>
+        <td>
+          <button class="btn" @click="removeitem(index)">
+            &nbsp;Remove <i class="fas fa-times-circle">&nbsp;</i>
+          </button>
+        </td>
       </tr>
     </tbody>
   </table>
-  <button >SUBMIT</button>
+  <button>SUBMIT</button>
 </template>
 
 <script>
@@ -43,7 +48,7 @@ export default {
   name: "Additem",
   data() {
     return {
-       index:1,
+      index: 1,
       item: "",
       quan: "",
       unit: "Kg",
@@ -61,21 +66,16 @@ export default {
           quan: this.quan,
           unit: this.unit,
         });
-        (this.item = ""),
-          (this.quan = ""),
-          (this.unit = "Kg")
-          this.index=this.index+1
-           
+        (this.item = ""), (this.quan = ""), (this.unit = "Kg");
+        this.index = this.index + 1;
       }
     },
 
-    removeitem(index){
-      this.items.splice(index,1);
-      this.index=this.index-1
-       
-  }
+    removeitem(index) {
+      this.items.splice(index, 1);
+      this.index = this.index - 1;
+    },
   },
-  
 };
 </script>
 
@@ -93,20 +93,20 @@ button {
   text-transform: uppercase;
   transition: transform 80ms ease-in;
 }
-button.btn{
-  padding:4px;
+button.btn {
+  padding: 4px;
   border-radius: 30px;
   background: rgb(0, 0, 0);
-   border:none;
-   color:rgb(255, 255, 255);
-   text-transform: none;
+  border: none;
+  color: rgb(255, 255, 255);
+  text-transform: none;
 }
-button.btn:hover{
-  padding:4px;
-     background: rgb(248, 44, 44);
-   border:none;
-   color:#000000;
-    }
+button.btn:hover {
+  padding: 4px;
+  background: rgb(248, 44, 44);
+  border: none;
+  color: #000000;
+}
 label,
 h5 {
   font-size: 20px;
@@ -116,11 +116,10 @@ input {
   border-radius: 15px;
 }
 input:focus {
-  outline:none;
-  background:#cfe2ff;
-  
+  outline: none;
+  background: #cfe2ff;
 }
- 
+
 select {
   border-radius: 15px;
   padding: 5px 10px;

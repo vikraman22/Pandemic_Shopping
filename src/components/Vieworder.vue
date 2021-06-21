@@ -1,10 +1,10 @@
 <template>
-  Notification card
+  view order
 </template>
 
 <script>
 export default {
-name:'Accept',
+
 }
 </script>
 

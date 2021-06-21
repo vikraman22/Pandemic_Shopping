@@ -67,6 +67,7 @@ export default defineComponent({
       name.value,mobile.value,password.value,
       locality.value,district.value,address.value);
       if (!error.value) {
+        alert("Account Registered Sucessufully")
         router.push({ name: "Home" });
         return res
       } else {

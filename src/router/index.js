@@ -9,8 +9,8 @@ const routes = [
     component: Home
   },
   {
-   path: '/customerhome',
-   name: 'Customerhome', 
+   path: '/customer',
+   name: 'Customerpage', 
    component: Customerhome,
    children:[
     {
@@ -19,7 +19,7 @@ const routes = [
       component: () => import('../components/Profile.vue')
      },
      {
-      path: '/Home',
+      path: '/CustomerHome',
       name: 'Chome',
       component: () => import('../components/Chome.vue')
      },
@@ -62,6 +62,11 @@ const routes = [
         path: '/Store/Confirmorder',
         name: 'Confirmorder',
         component: () => import('../components/Confirmorder.vue')
+       },
+       {
+        path: '/Store/Vieworder',
+        name: 'Vieworder',
+        component: () => import('../components/Vieworder.vue')
        },
     ]
    },

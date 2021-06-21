@@ -1,11 +1,12 @@
 <template>
-  store home
+  <Order/>
 </template>
 
 <script>
-
+import Order from '../components/Order.vue'
 export default {
-name:'Shome'
+name:'Shome',
+components:{Order}
 
 }
 </script>
