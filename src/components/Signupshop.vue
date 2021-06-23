@@ -49,14 +49,13 @@ export default defineComponent({
      
     
     const onSubmit = async () => {
-       
       const res = await signupstore(email.value,
       storename.value,ownername.value,mobile.value,password.value,
       locality.value,district.value );
       if (!error.value) {
-        alert("Account Registered Sucessufully")
-        router.go();
-        return res
+        //alert("Account Registered Sucessufully")
+        router.push('/Storehome')
+        console.log(res);
       } else {
         error.value = "Registration haven't completed";
       }

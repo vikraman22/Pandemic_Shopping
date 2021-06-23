@@ -6,27 +6,34 @@ import { projectAuth, projectFirestore } from '../Firebase/config.js'
 const error = ref(null)
 
 const signupstore = async (email, storename,ownername, mobile, password, 
-    locality, district, ) => {
+    locality, district ) => {
     error.value = null
 
+    /* console.log(
+      email,
+      storename,
+      ownername,
+      mobile,
+      password,
+      locality,
+      district
+    ); */
 
     try {
-        const res = await projectAuth.createUserWithEmailAndPassword(email, password)
+        const result = await projectAuth.createUserWithEmailAndPassword(email, password)
 
-        if (!res) {
+        if (!result) {
             throw new Error("Could not complete the signup")
         }
-        await projectFirestore.collection('store').doc(res.user.uid).set({
-            uid: res.user.uid,
-            email: res.user.email,
+        await projectFirestore.collection('store').doc(result.user.uid).set({
+            uid: result.user.uid,
+            email: result.user.email,
             storename: storename,
             ownername: ownername,
             mobile: mobile,
             password: password,
             locality: locality,
-            district: district,
-            
-
+            district: district
         })
         //await projectAuth.currentUser.sendEmailVerification()
         error.value = null

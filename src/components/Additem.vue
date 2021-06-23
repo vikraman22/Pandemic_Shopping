@@ -40,42 +40,60 @@
       </tr>
     </tbody>
   </table>
-  <button>SUBMIT</button>
+  <button @click="addItemFbFunc">SUBMIT</button>
 </template>
 
 <script>
+import { projectFirestore, projectAuth } from '../Firebase/config';
+import { ref } from 'vue';
+import { useRouter } from 'vue-router';
+
+
+
 export default {
   name: "Additem",
-  data() {
-    return {
-      index: 1,
-      item: "",
-      quan: "",
-      unit: "Kg",
-      items: [],
-    };
-  },
-  methods: {
-    additem() {
-      if (this.item == "" || this.quan == "") {
+
+  setup(){
+
+    let items = ref([])
+    let item= ref("")
+    let quan= ref("")
+    let unit = ref("Kg")
+    let index = ref(1)
+    const router = useRouter()
+
+    const additem = () =>{
+      if (item.value == "" || quan.value == "") {
         alert("Must Include Details");
       } else {
-        this.items.push({
-          index: this.index,
-          item: this.item,
-          quan: this.quan,
-          unit: this.unit,
+        items.value.push({
+          index: index.value,
+          item: item.value,
+          quan: quan.value,
+          unit: unit.value,
         });
-        (this.item = ""), (this.quan = ""), (this.unit = "Kg");
-        this.index = this.index + 1;
+        (item.value = ""), (quan.value = ""), (unit.value = "Kg");
+        index.value = index.value + 1;
       }
-    },
+    }
 
-    removeitem(index) {
-      this.items.splice(index, 1);
-      this.index = this.index - 1;
-    },
-  },
+    const removeitem = (index) =>{
+      items.value.splice(index, 1);
+      index.value = index.value - 1;
+    }
+
+    const addItemFbFunc = async() =>{
+
+      let user = projectAuth.currentUser
+
+      await projectFirestore.collection('orders').doc(user.uid).set({
+        orderedItem: items.value
+      })
+      router.push('/CustomerHome')
+    }
+
+    return { removeitem, additem, addItemFbFunc, items, item, quan, unit, index }
+  }
 };
 </script>
 
