@@ -55,7 +55,7 @@ export default defineComponent({
       locality.value,district.value );
       if (!error.value) {
         alert("Account Registered Sucessufully")
-        router.push({ name: "Home" });
+        router.go();
         return res
       } else {
         error.value = "Registration haven't completed";
@@ -114,8 +114,10 @@ h5{
 }
   button {
     border-radius: 20px;
-	border: 1px solid #000000;
-	background-color: #000000;
+ border: 1px solid #0090C1;
+  background-color: #0090C1;
+  box-shadow: 200px;
+   
 	color: #FFFFFF;
 	font-size: 12px;
     cursor:pointer;

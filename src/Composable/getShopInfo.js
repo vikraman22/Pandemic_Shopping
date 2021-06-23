@@ -1,7 +1,7 @@
 import { ref } from 'vue'
 import { projectFirestore } from "../Firebase/config"
 
-const getShops = () => {
+const getShopInfo = () => {
 
     const shops = ref([])
     const error = ref(null)
@@ -29,4 +29,4 @@ const getShops = () => {
     return {shops,error, load}
 }
 
-export default getShops
+export default getShopInfo

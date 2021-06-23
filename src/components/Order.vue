@@ -75,6 +75,7 @@ export default {
   height: 340px;
   box-shadow: 20px;
   border-color: rgb(0, 0, 0);
+  background: #f5f5f5;
  }
  .card-title{
      background: black;

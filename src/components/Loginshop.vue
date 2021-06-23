@@ -39,7 +39,7 @@ export default {
     const onSubmit = async () => {
       const res = await loginstore(email.value, password.value);
       if (!error.value) {
-        router.push({ name: "Storepage" });
+        router.push('/Storehome');
         return res;
       }
     };
@@ -86,8 +86,9 @@ textarea:focus {
 }
 button {
   border-radius: 20px;
-  border: 1px solid #000000;
-  background-color: #000000;
+  border: 1px solid #0090C1;
+  background-color: #0090C1;
+  box-shadow: 200px;
   color: #ffffff;
   font-size: 12px;
   cursor: pointer;

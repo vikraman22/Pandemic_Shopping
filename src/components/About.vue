@@ -28,7 +28,7 @@ export default {
     text-align: center;
     
     border-radius: 10px;
-    top:40px;
+    top:0px;
     max-width:85%;
     float: none;
     margin-bottom: 10px;

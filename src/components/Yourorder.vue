@@ -2,14 +2,13 @@
   
   <div class="backdrop">
 
-  {{index}}
+ 
   </div>
 
 </template>
 
 <script>
-export default {
-    props:['index','item','quan','unit']
+export default { 
 
 
 }

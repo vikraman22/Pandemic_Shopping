@@ -1,14 +1,14 @@
 <template>
   <div class="split left">
-    <div class="centered">
-      <h2>WELCOME</h2>
-      <p style="font-size: 20px">
+    
+      <h1>WELCOME</h1>
+      <p class="lefttext" style="font-size: 20px">
         This Pandemic Shopping Companion is to develop a web application for
         grocery stores to reduce the crowd by pre-ordering the required products
         prior to reaching the store.
       </p>
     </div>
-  </div>
+  
 
   <div class="split right">
     
@@ -191,7 +191,8 @@ export default {
 /* Control the left side */
 .left {
   left: 0;
-  background-color: #4a0d67;
+
+  background-color: #0090C1;
   
   color: white;
 }
@@ -199,7 +200,7 @@ export default {
 /* Control the right side */
 .right {
   right: 0;
-  background-color: #e6e6e9;
+  background-color: #dee6e8;
   color: black;
 }
 
@@ -219,4 +220,20 @@ export default {
   width: 160px;
   border-radius: 50%;
 }
+h1{
+  position: relative;
+  top:200px;
+}
+h1:hover{
+  font-size: 40px;
+  color: #000000;
+   
+}
+.lefttext{
+  position: relative;
+  top:220px;
+  text-transform: capitalize;
+}
+
+
 </style>

@@ -15,7 +15,7 @@ const getSingleShop = (id) => {
          {
              throw Error("Store not available")
          }
-
+          
          shop.value = {...res.data(), id: res.id}
 
 
