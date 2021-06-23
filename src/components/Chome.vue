@@ -18,7 +18,7 @@
 </template>
 
 <script>
-import getShopInfo from "../Composable/getShopInfo"
+/* import getShopInfo from "../Composable/getShopInfo" */
 import {ref} from 'vue' 
 import { useRouter } from 'vue-router';
 export default {
