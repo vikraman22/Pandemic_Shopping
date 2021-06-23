@@ -14,7 +14,7 @@
           >
           <a
             class="navbar-brand"
-            style="position: relative; right: -580px"
+            style="position: relative; right: -560px"
             href="#"
             @click="gototab('Nearby')"
           >
@@ -23,7 +23,7 @@
           
           <button
             type="button"
-            Style="position: relative; right: -620px"
+            Style="position: relative; right: -600px"
             class="btn btn-light"
             
           >
@@ -32,7 +32,7 @@
           </button>
           <a
             class="navbar-brand"
-            style="position: relative; right: -690px"
+            style="position: relative; right: -640px"
             href="#"
             @click="gototab('Profile')"
             ><i class="fas fa-user"></i> Profile</a
@@ -44,7 +44,7 @@
 
   <div class="content">
    
-    <Accept />
+  <!--   <Accept /> -->
    
 
     <router-view />
@@ -54,10 +54,10 @@
 <script>
 /* import { ref } from "vue"; */
 import { useRouter } from "vue-router";
-import Accept from "../components/Accept.vue";
+/* import Accept from "../components/Accept.vue"; */
 export default {
   name: "Customerhome",
-  components: { Accept },
+  /* components: { Accept }, */
   setup() {
     const router = useRouter();
     const gototab = (tab) => {
@@ -79,6 +79,9 @@ export default {
   max-width: 960px; /* 2 */
   padding-right: 10px; /* 3 */
   padding-left: 10px; /* 3 */
+}
+body{
+  background:#FBFFF1
 }
 </style>
  

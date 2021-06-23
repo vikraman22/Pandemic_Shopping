@@ -8,7 +8,7 @@
         placeholder="Email address"
         required />
       <input type="text" v-model="name" placeholder="Name" required />
-      <input type="number" v-model="mobile" placeholder="Phone" required />
+      <input type="number" pattern="[789][0-9]{9}" v-model="mobile" placeholder="Phone" required />
 
       <input
         placeholder="Password"

@@ -9,7 +9,7 @@
         required />
     <input type="text" v-model="storename"  placeholder="Store name" required>
     <input type="text" v-model="ownername" placeholder="Owner name" required>
-    <input type="number" v-model="mobile" placeholder="Phone" required>
+    <input type="number" pattern="[789][0-9]{9}" v-model="mobile" placeholder="Phone" required>
     <input placeholder="Password" v-model="password" type="password"  required  >
     <input type="text" v-model="locality" placeholder="Locality"  required  >
     <select v-model="district">
@@ -21,7 +21,7 @@
       <option value="Kanyakumari">Kanyakumari</option>
     </select>
     <label>Upload Store image</label>
-    <input type="file"  placeholder="Store image"    >
+    <input type="file"  placeholder="Store image" >
 
     <div class="submit">
       <button>Register Store</button>
@@ -53,8 +53,8 @@ export default defineComponent({
       storename.value,ownername.value,mobile.value,password.value,
       locality.value,district.value );
       if (!error.value) {
-        //alert("Account Registered Sucessufully")
-        router.push('/Storehome')
+        alert("Account Registered Sucessufully")
+        router.go();
         console.log(res);
       } else {
         error.value = "Registration haven't completed";
@@ -64,7 +64,7 @@ export default defineComponent({
     
     return{ref, onSubmit,
       error , email, storename,ownername, mobile, password, 
-      locality, district, }
+      locality, district }
   }
 
 })
