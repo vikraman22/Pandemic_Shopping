@@ -1,6 +1,6 @@
 <template>
   <div class="form">
-    <h5>ADD ITEMS</h5>
+    <h5>Create Your List</h5>
     <br />
     <Label>Item name &nbsp;&nbsp; </Label>
     <input required v-model="item" type="text" />
@@ -8,12 +8,14 @@
     <input required v-model="quan" type="number" />
     <Label>&nbsp;&nbsp;Unit&nbsp;&nbsp;</Label>
     <select required v-model="unit" type="text">
-      <option class="Kg">Kg</option>
-      <option class="Grams">Grams</option>
-      <option class="Nos">Nos</option>
+      <option class="kg">kg</option>
+      <option class="grams">grams</option>
+      <option class="nos">nos</option>
+      <option class="litre">litre</option>
+      <option class="ml">ml</option>
     </select>
     <br /><br />
-    <button @click="additem">Add item</button>
+    <button @click="additem"><i class="fas fa-plus"></i> Add item</button>
   </div>
   <br />
   <table class="table">
@@ -40,7 +42,7 @@
       </tr>
     </tbody>
   </table>
-  <button @click="addItemFbFunc">SUBMIT</button>
+  <button @click="addItemFbFunc"> <i class="fas fa-check-circle"></i> SUBMIT</button>
 </template>
 
 <script>
@@ -58,7 +60,7 @@ export default {
     let items = ref([])
     let item= ref("")
     let quan= ref("")
-    let unit = ref("Kg")
+    let unit = ref("kg")
     let index = ref(1)
     const router = useRouter()
 
@@ -72,7 +74,7 @@ export default {
           quan: quan.value,
           unit: unit.value,
         });
-        (item.value = ""), (quan.value = ""), (unit.value = "Kg");
+        (item.value = ""), (quan.value = ""), (unit.value = "kg");
         index.value = index.value + 1;
       }
     }
@@ -85,10 +87,10 @@ export default {
     const addItemFbFunc = async() =>{
 
       let user = projectAuth.currentUser
-
       await projectFirestore.collection('orders').doc(user.uid).set({
         orderedItem: items.value
       })
+      alert("Your Order has Sent ")
       router.push('/CustomerHome')
     }
 

@@ -13,7 +13,7 @@
         <div v-if="showno" >
         <p class="card-text"><i class="fas fa-mobile-alt"></i> {{i.mobile}}</p>
         </div>
-        <button class="leftbtn" @click="gototab('Additem')"><i class="fas fa-hand-pointer"></i> SHOP</button>   <button @click="toggleno"><i class="fas fa-phone-alt"></i> CONTACT</button>
+        <button class="leftbtn" @click="gototab('Additem')"><i class="fas fa-cart-plus"></i> SHOP</button>   <button @click="toggleno"><i class="fas fa-phone-alt"></i> CONTACT</button>
       </div>
     </div>
   </div>
