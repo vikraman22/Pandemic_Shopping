@@ -1,11 +1,11 @@
 <template>
-  hello
+  <h4>max</h4>
 </template>
 
 <script>
- 
 export default {
-name:'Shome',
+name:'Tmax',
+
 }
 </script>
 

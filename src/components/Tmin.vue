@@ -1,11 +1,12 @@
 <template>
-  hello
+   
+
+ min
 </template>
 
 <script>
- 
 export default {
-name:'Shome',
+name:'Tmin',
 }
 </script>
 

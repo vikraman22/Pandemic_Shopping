@@ -26,6 +26,11 @@ const routes = [
       component: () => import('../components/Chome.vue')
      },
      {
+      path: '/Customer/Yourorder',
+      name: 'Yourorder',
+      component: () => import('../components/Yourorder.vue')
+     },
+     {
       path: '/Nearbystore',
       name: 'Nearby',
       component: () => import('../components/Nearby.vue'),
@@ -60,10 +65,32 @@ const routes = [
         name: 'Temporder',
         component: () => import('../components/Temporder.vue')
        },
+        {
+            path: '/Temporaryorder/minimum',
+            name: 'Tmin',
+            component: () => import('../components/Tmin.vue')
+           },
+           {
+            path: '/Temporaryorder/maximum',
+            name: 'Tmax',
+            component: () => import('../components/Tmax.vue')
+           },
+        
+      
        {
         path: '/Store/Confirmorder',
         name: 'Confirmorder',
         component: () => import('../components/Confirmorder.vue')
+       },
+       {
+        path: '/Store/Confirmorder/minimum',
+        name: 'Cmin',
+        component: () => import('../components/Cmin.vue')
+       },
+       {
+        path: '/Store/Confirmorder/maximum',
+        name: 'Cmax',
+        component: () => import('../components/Cmax.vue')
        },
        {
         path: '/Store/Vieworder',

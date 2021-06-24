@@ -1,11 +1,10 @@
 <template>
-  hello
+  c max
 </template>
 
 <script>
- 
 export default {
-name:'Shome',
+name:'Cmax'
 }
 </script>
 

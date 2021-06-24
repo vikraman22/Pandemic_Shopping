@@ -3,7 +3,7 @@
    <div class="profile">
        <h5>My Profile</h5>
        <h6>Profile Owner's name</h6>
-      <button class="logout">Logout</button> 
+      <button @click="handleClick" class="logout">Logout</button> 
 
   <form   >
       <!--  name change -->
@@ -42,16 +42,26 @@
 </template>
 
 <script>
- 
-export default{ 
+
+import getUser from '../Composable/getUser'
+import useLogout from "../Composable/useLogout";
+import { useRouter } from "vue-router";
+export default {
   name:'Storeprofile',
-    components:{},
-  setup () {
-
-  }
-}
-
-
+  components: {},
+  setup() {
+    const { user } = getUser();
+    const { logout } = useLogout();
+    const router = useRouter();
+    const handleClick = async () => {
+      await logout();
+      console.log("logged out");
+      alert("You are logged out Sucessfully")
+      router.push({ name: "Home" });
+    };
+    return { handleClick, user };
+  },
+};
 
 </script>
 

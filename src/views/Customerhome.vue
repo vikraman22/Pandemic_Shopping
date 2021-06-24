@@ -14,16 +14,23 @@
           >
           <a
             class="navbar-brand"
-            style="position: relative; right: -560px"
+            style="position: relative; right: -400px"
             href="#"
             @click="gototab('Nearby')"
           >
-            <i class="fas fa-store"></i> Nearby stores</a
+            <i class="fas fa-store"></i> Nearby stores</a>
+          <a
+            class="navbar-brand"
+            style="position: relative; right: -430px"
+            href="#"
+            @click="gototab('Yourorder')"
+          >
+            <i class="fas fa-list-ol"></i> Yourorder</a
           >
           
           <button
             type="button"
-            Style="position: relative; right: -600px"
+            Style="position: relative; right: -460px"
             class="btn btn-light"
             
           >
@@ -32,7 +39,7 @@
           </button>
           <a
             class="navbar-brand"
-            style="position: relative; right: -640px"
+            style="position: relative; right: -510px"
             href="#"
             @click="gototab('Profile')"
             ><i class="fas fa-user"></i> Profile</a
@@ -82,6 +89,9 @@ export default {
 }
 body{
   background:#FBFFF1
+}
+a{
+  text-transform: lowercase;
 }
 </style>
  
