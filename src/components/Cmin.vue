@@ -1,5 +1,5 @@
 <template>
-  c min
+  c minimum
 </template>
 
 <script>
