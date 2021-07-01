@@ -18,53 +18,60 @@
     <button @click="additem"><i class="fas fa-plus"></i> Add item</button>
   </div>
   <br />
-  <table class="table">
-    <thead>
-      <tr class="table-dark">
-        <th scope="col">No</th>
-        <th scope="col">Item</th>
-        <th scope="col">Quantity</th>
-        <th scope="col">Unit</th>
-        <th scope="col">Remove Item</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr class="table-primary" v-for="(it, index) in items" :key="it">
-        <th scope="row">{{ it.index }}</th>
-        <td>{{ it.item }}</td>
-        <td>{{ it.quan }}</td>
-        <td>{{ it.unit }}</td>
-        <td>
-          <button class="btn" @click="removeitem(index)">
-            &nbsp;Remove <i class="fas fa-times-circle">&nbsp;</i>
-          </button>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-  <button @click="addItemFbFunc"> <i class="fas fa-check-circle"></i> SUBMIT</button>
+  <div v-if="showlist == true">
+    <table class="table">
+      <thead>
+        <tr class="table-dark">
+          <th scope="col">No</th>
+          <th scope="col">Item</th>
+          <th scope="col">Quantity</th>
+          <th scope="col">Unit</th>
+          <th scope="col">Remove Item</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="table-primary" v-for="(it, index) in items"  :key="it"  >
+          <th scope="row">{{ index+one }}</th>
+          <td>{{ it.item }}</td>
+          <td>{{ it.quan }}</td>
+          <td>{{ it.unit }}</td>
+          <td>
+            <button class="btn" @click="removeitem(index)">
+              &nbsp;Remove <i class="fas fa-times-circle">&nbsp;</i>
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <button @click="addItemFbFunc">
+      <i class="fas fa-check-circle"></i> SUBMIT
+    </button>
+  </div>
+  <div v-else>
+    <h3 style="color:crimson;">"Add atleast one item"</h3>
+  </div>
 </template>
 
 <script>
-import { projectFirestore, projectAuth } from '../Firebase/config';
-import { ref } from 'vue';
-import { useRouter } from 'vue-router';
-
-
+import { projectFirestore, projectAuth } from "../Firebase/config";
+import { ref } from "vue";
+import { useRouter } from "vue-router";
 
 export default {
   name: "Additem",
 
-  setup(){
+  setup() {
+    let one = 1
+    let showlist = ref(false);
+    let items = ref([]);
+    let item = ref("");
+    let quan = ref("");
+    let unit = ref("kg");
+    let index = ref(1);
+    const router = useRouter();
 
-    let items = ref([])
-    let item= ref("")
-    let quan= ref("")
-    let unit = ref("kg")
-    let index = ref(1)
-    const router = useRouter()
-
-    const additem = () =>{
+    const additem = () => {
+      showlist.value = true;
       if (item.value == "" || quan.value == "") {
         alert("Must Include Details");
       } else {
@@ -75,27 +82,36 @@ export default {
           unit: unit.value,
         });
         (item.value = ""), (quan.value = ""), (unit.value = "kg");
-        index.value = index.value + 1;
+        
       }
-    }
+    };
 
-    const removeitem = (index) =>{
+    const removeitem = (index) => {
       items.value.splice(index, 1);
-      index.value = index.value - 1;
-    }
+      
+    };
 
-    const addItemFbFunc = async() =>{
+    const addItemFbFunc = async () => {
+      let user = projectAuth.currentUser;
+      await projectFirestore.collection("orders").doc(user.uid).set({
+        orderedItem: items.value,
+      });
+      alert("Your Order has Sent ");
+      router.push("/CustomerHome");
+    };
 
-      let user = projectAuth.currentUser
-      await projectFirestore.collection('orders').doc(user.uid).set({
-        orderedItem: items.value
-      })
-      alert("Your Order has Sent ")
-      router.push('/CustomerHome')
-    }
-
-    return { removeitem, additem, addItemFbFunc, items, item, quan, unit, index }
-  }
+    return {one,
+      removeitem,
+      additem,
+      addItemFbFunc,
+      showlist,
+      items,
+      item,
+      quan,
+      unit,
+      index,
+    };
+  },
 };
 </script>
 

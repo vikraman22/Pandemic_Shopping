@@ -34,7 +34,7 @@
             class="btn btn-light"
             
           >
-            <i class="fas fa-bell"></i> <b>Notification</b>
+            <i class="fas fa-bell"></i> <b>Notification</b>&nbsp;
             <span class="badge bg-secondary">0 </span>
           </button>
           <a
@@ -91,7 +91,7 @@ body{
   background:#FBFFF1
 }
 a{
-  text-transform: lowercase;
+  text-transform:capitalize;
 }
 </style>
  

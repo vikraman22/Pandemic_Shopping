@@ -1,6 +1,7 @@
 <template>
   <div class="login">
     <form @submit.prevent="onSubmit">
+      <i class="fas fa-store" ></i>
       <h5>SHOPKEEPER LOGIN</h5>
 
       <input
