@@ -55,11 +55,7 @@ const routes = [
         component: () => import('../components/Storeprofile.vue')
        },
 
-       {
-        path: '/Storehome',
-        name: 'Storehome',
-        component: () => import('../components/Shome.vue')
-       },
+       
        {
         path: '/Store/Temporaryorder',
         name: 'Temporder',

@@ -15,7 +15,7 @@
       <option class="ml">ml</option>
     </select>
     <br /><br />
-    <button @click="additem"><i class="fas fa-plus"></i> Add item</button>
+    <button @click="additem"><i class="fas fa-plus-circle"></i> Add item</button>
   </div>
   <br />
   <div v-if="showlist == true">
@@ -48,7 +48,7 @@
     </button>
   </div>
   <div v-else>
-    <h3 style="color:crimson;">"Add atleast one item"</h3>
+    <h3 style="color:crimson;"> <i class="fas fa-cart-plus"></i>  Add atleast one item!</h3>
   </div>
 </template>
 

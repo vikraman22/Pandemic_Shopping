@@ -11,7 +11,7 @@
   </label>
 				</th>
 				<th>No</th>
-				<th>Itemname</th>
+				<th>Item name</th>
 				<th>Quantity</th>
 				<th>Unit</th>
 			</tr>
@@ -31,7 +31,8 @@
 			</tr>
 		</tbody>
 	</table>
-	<input type="number" placeholder="Bill amount" v-model="bill" ><br><br>
+	<label><b>Enter bill amount for available items *</b></label>&nbsp;&nbsp;
+	<input  required type="number" placeholder="Bill amount" v-model="bill" ><br><br>
 	<button>Send</button>
 </div>
 </template>
@@ -75,14 +76,14 @@ export default {
 
 </script>
 
-<style>
+<style scoped>
 
 button {
   border-radius: 10px;
    border: 1px solid #0090C1;
-  background-color: #0090C1;
+  background-color: #40BCD8;
   box-shadow: 200px;
-  color: #ffffff;
+  color: #000000;
   font-size: 12px;
   cursor: pointer;
   font-weight: bold;
@@ -109,11 +110,11 @@ button.ghost {
      border-radius: 6px;
 }
  input:focus  {
-     background: #F5EFFF;
+     background: #ffe4d6;
 	 
 }
 thead{
-	background: #330033;
+	background: #FF570A;
 	color:white;
 	text-transform: uppercase;
 }

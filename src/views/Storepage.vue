@@ -5,7 +5,7 @@
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container-fluid">
       <a class="navbar-brand " style="position:relative;right:70px;"
-       href="#" @click="gototab('Storehome')" ><i class="fas fa-home"></i> HOME</a>
+       href="#" @click="gototab('Temporder')" ><i class="fas fa-home"></i> HOME</a>
       <a class="navbar-brand " style="position:relative;right:-250px;"
        href="#" @click="gototab('Temporder')" ><i class="fas fa-hourglass-start"></i> Temporary Orders</a>
       <a class="navbar-brand " style="position:relative;right:-300px;"

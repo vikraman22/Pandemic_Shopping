@@ -14,7 +14,7 @@
         checked
       />
       <label
-        class="btn btn-outline-primary"
+        class="btn btn-outline-danger"
         @click="togglemin"
         for="btnradio1"
         ><div class="text">MINIMUM&nbsp;ORDER</div></label
@@ -26,7 +26,7 @@
         id="btnradio2"
         autocomplete="off"
       />
-      <label class="btn btn-outline-primary" @click="toggleview" for="btnradio2"
+      <label class="btn btn-outline-danger" @click="toggleview" for="btnradio2"
         ><div class="text">MAXIMUM&nbsp;ORDER</div></label
       >
     </div>
