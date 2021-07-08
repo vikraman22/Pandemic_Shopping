@@ -38,7 +38,8 @@ const routes = [
      {
       path: '/Additem',
       name: 'Additem',
-      component: () => import('../components/Additem.vue')
+      component: () => import('../components/Additem.vue'),
+      props: true
      },
   
    ]

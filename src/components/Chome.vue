@@ -13,7 +13,10 @@
         <div v-if="showno" >
         <p class="card-text"><i class="fas fa-mobile-alt"></i> {{i.mobile}}</p>
         </div>
-        <button class="leftbtn" @click="gototab('Additem')"><i class="fas fa-cart-plus"></i> SHOP</button>   <button @click="toggleno"><i class="fas fa-phone-alt"></i> CONTACT</button>
+        <router-link :to="{name: 'Additem', params:{storeName:i.email}}">
+        <button class="leftbtn"><i class="fas fa-cart-plus"></i> SHOP</button>   
+        </router-link>
+        <button @click ="toggleno"><i class="fas fa-phone-alt"></i> CONTACT</button>
       </div>
     </div>
   </div>
@@ -34,7 +37,7 @@ setup(){
    
    let showno =ref(false)
    const router = useRouter()
-   const gototab = tab =>{
+   const gototab = (tab) =>{
      router.push({ name : tab})
    }
     const toggleno = () =>{

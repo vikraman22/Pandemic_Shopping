@@ -31,7 +31,7 @@
       </thead>
       <tbody>
         <tr class="table-primary" v-for="(it, index) in items"  :key="it"  >
-          <th scope="row">{{ index+one }}</th>
+          <th scope="row">{{ index  }}</th>
           <td>{{ it.item }}</td>
           <td>{{ it.quan }}</td>
           <td>{{ it.unit }}</td>
@@ -56,18 +56,21 @@
 import { projectFirestore, projectAuth } from "../Firebase/config";
 import { ref } from "vue";
 import { useRouter } from "vue-router";
+import firebase from 'firebase/app'
+import 'firebase/firestore'
 
 export default {
   name: "Additem",
-
-  setup() {
-    let one = 1
+  props: ['storeName'],
+  setup(props) {
+     
     let showlist = ref(false);
     let items = ref([]);
     let item = ref("");
     let quan = ref("");
     let unit = ref("kg");
-    let index = ref(1);
+    let totalQuantity = ref(0);
+    let index = ref("");
     const router = useRouter();
 
     const additem = () => {
@@ -75,13 +78,14 @@ export default {
       if (item.value == "" || quan.value == "") {
         alert("Must Include Details");
       } else {
+        totalQuantity.value += parseInt(quan.value)
         items.value.push({
           index: index.value,
           item: item.value,
           quan: quan.value,
           unit: unit.value,
         });
-        (item.value = ""), (quan.value = ""), (unit.value = "kg");
+       (index.value = ""), (item.value = ""), (quan.value = ""), (unit.value = "kg");
         
       }
     };
@@ -93,14 +97,19 @@ export default {
 
     const addItemFbFunc = async () => {
       let user = projectAuth.currentUser;
-      await projectFirestore.collection("orders").doc(user.uid).set({
-        orderedItem: items.value,
+      await projectFirestore.collection("orders").add({
+        orderedItems: items.value,
+        store: props.storeName,
+        userName: user.displayName,
+        userId: user.uid,
+        totalQuantity: totalQuantity.value,
+        totalItems: items.value.length
       });
       alert("Your Order has Sent ");
       router.push("/CustomerHome");
     };
 
-    return {one,
+    return { 
       removeitem,
       additem,
       addItemFbFunc,

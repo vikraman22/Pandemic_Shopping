@@ -40,7 +40,7 @@ export default {
     const onSubmit = async () => {
       const res = await loginstore(email.value, password.value);
       if (!error.value) {
-        router.push('Temporder');
+        router.push('/Store/Temporaryorder');
         return res;
       }
     };
