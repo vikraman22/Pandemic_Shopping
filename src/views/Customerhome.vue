@@ -32,10 +32,10 @@
             type="button"
             Style="position: relative; right: -460px"
             class="btn btn-light"
-            
+            @click="gototab('Notification')"
           >
             <i class="fas fa-bell"></i> <b>Notification</b>&nbsp;
-            <span class="badge bg-secondary">0 </span>
+            
           </button>
           <a
             class="navbar-brand"

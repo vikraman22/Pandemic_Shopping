@@ -68,6 +68,7 @@ button {
   
  
   padding: 8px 22px;
+  margin: 4px;
   
  
 }

@@ -26,6 +26,11 @@ const routes = [
       component: () => import('../components/Chome.vue')
      },
      {
+      path: '/Customer/Notification',
+      name: 'Notification',
+      component: () => import('../components/Notification.vue')
+     },
+     {
       path: '/Customer/Yourorder',
       name: 'Yourorder',
       component: () => import('../components/Yourorder.vue')
@@ -92,7 +97,8 @@ const routes = [
        {
         path: '/Store/Vieworder',
         name: 'Vieworder',
-        component: () => import('../components/Vieworder.vue')
+        component: () => import('../components/Vieworder.vue'),
+        props: true
        },
     ]
    },

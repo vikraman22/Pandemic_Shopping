@@ -2,14 +2,17 @@
   <div class="row row-cols-1 row-cols-md-3 g-4" >
     <div v-for="i in orderedUsers" :key="i.id">
     <div class="card border-danger mb-3" style="max-width: 18rem">
-      <div class="card-header">Customer Name</div>
-      <div class="card-body text-danger">
-        <h5 class="card-title">Primary card title</h5>
-        <p class="card-text">
-          Some quick example text to build on the card title and make up the
-          bulk of the card's content.
+      <div class="card-header"  style="font-weight:bold;">ORDER DETAILS</div>
+      <div class="card-body text-dark">
+      
+        <p class="card-text" style="font-weight:bold;">
+          <img src="../assets/more.jpg"  class="card-img-top"><br>
+           No of items - {{i.totalItems}}
         </p>
-          <div class="card-footer bg-transparent border-success"><Button>View order</Button></div>
+          <p class="card-title" style="font-size:12px;">UserID - {{i.userId}}</p>
+        <router-link :to="{name: 'Vieworder', params:{list: i}}">
+          <div class="card-footer bg-transparent border-danger"><Button>View order</Button></div>
+        </router-link>
       </div>
     </div>
     </div>
@@ -32,5 +35,11 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
+Button{
+  color:white;
+  background-color: rgb(255, 37, 37);
+  border-radius: 4px;
+  text-transform: uppercase;
+}
 </style>
