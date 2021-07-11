@@ -9,8 +9,11 @@
           <img src="../assets/more.jpg"  class="card-img-top"><br>
            No of items - {{i.totalItems}}
         </p>
-          <p class="card-title" style="font-size:12px;">UserID - {{i.userId}}</p>
+          <p class="card-title" style="font-size:12px;">Customer Name - {{i.userName}}</p>
+           <router-link :to="{name: 'ConfirmViewOrder', params:{id: i.id}}">
           <div class="card-footer bg-transparent border-success"><Button>View order</Button></div>
+        </router-link>
+         <div class="card-footer bg-transparent border-success"><Button>Complete order</Button></div>
       </div>
     </div>
     </div>

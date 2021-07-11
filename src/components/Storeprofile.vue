@@ -2,7 +2,7 @@
 <div class="body">
    <div class="profile">
        <h5>My Profile</h5>
-       <h6>Profile Owner's name</h6>
+       <h6>{{user.displayName}}</h6>
       <button @click="handleClick" class="logout">Logout</button> 
 
   <form   >

@@ -42,7 +42,7 @@
             style="position: relative; right: -510px"
             href="#"
             @click="gototab('Profile')"
-            ><i class="fas fa-user"></i> Profile</a
+            ><i class="fas fa-user"></i> {{user.displayName}}</a
           >
         </div>
       </nav>
@@ -62,10 +62,13 @@
 /* import { ref } from "vue"; */
 import { useRouter } from "vue-router";
 /* import Accept from "../components/Accept.vue"; */
+import getUser from '../Composable/getUser'
 export default {
   name: "Customerhome",
   /* components: { Accept }, */
   setup() {
+    
+    const { user } = getUser();
     const router = useRouter();
     const gototab = (tab) => {
       router.push({ name: tab });
@@ -73,7 +76,7 @@ export default {
     //modal
     
     
-    return { gototab  };
+    return { gototab ,user };
   },
 };
 </script>

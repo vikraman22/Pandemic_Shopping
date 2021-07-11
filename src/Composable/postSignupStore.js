@@ -9,31 +9,24 @@ const signupstore = async (email, storename,ownername, mobile, password,
     locality, district ) => {
     error.value = null
 
-    /* console.log(
-      email,
-      storename,
-      ownername,
-      mobile,
-      password,
-      locality,
-      district
-    ); */
-
+  
     try {
         const result = await projectAuth.createUserWithEmailAndPassword(email, password)
 
         if (!result) {
             throw new Error("Could not complete the signup")
         }
+        await result.user.updateProfile({displayName: ownername})
         await projectFirestore.collection('store').doc(result.user.uid).set({
             uid: result.user.uid,
             email: result.user.email,
             storename: storename,
-            ownername: ownername,
+            ownername:  result.user.displayName,
             mobile: mobile,
             password: password,
             locality: locality,
-            district: district
+            district: district,
+
         })
         //await projectAuth.currentUser.sendEmailVerification()
         error.value = null

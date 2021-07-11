@@ -1,13 +1,14 @@
 import { ref, watchEffect } from 'vue'
 import { projectFirestore, projectAuth } from '../Firebase/config.js'
 
-const getNotify = () => {
+const getYourOrder = () => {
     
   const error = ref(null)
   const documents = ref(null)
   const user = ref(projectAuth.currentUser)
 
-    let collectionRef = projectFirestore.collection("notify").where('userId', "==", user.value.uid)
+    let collectionRef = projectFirestore.collection("orders")
+        .where('userId', "==", user.value.uid)
 
     const unsub = collectionRef.onSnapshot(snap => {
         let results = []
@@ -17,7 +18,7 @@ const getNotify = () => {
         });
         ;
         // update values
-      documents.value = {...results[0].availitems,Bill_amount_for_available_items :results[0].bill}
+      documents.value = results[0].orderedItems
         error.value = null
     }, err => {
         console.log(err.message)
@@ -35,4 +36,4 @@ const getNotify = () => {
         
 }
 
-export default getNotify
+export default getYourOrder

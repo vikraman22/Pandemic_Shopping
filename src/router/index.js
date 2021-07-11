@@ -100,6 +100,12 @@ const routes = [
         component: () => import('../components/Vieworder.vue'),
         props: true
        },
+       {
+        path: '/Store/ConfirmVieworder',
+        name: 'ConfirmVieworder',
+        component: () => import('../components/ConfirmViewOrder.vue'),
+        props: true
+       },
     ]
    },
       

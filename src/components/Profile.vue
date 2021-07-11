@@ -2,7 +2,7 @@
   <div class="body">
     <div class="profile">
       <h5>My Profile</h5>
-      <h6>Profile Owner's name</h6>
+      <h6>Username - {{user.displayName}}</h6>
       <button class="logout" @click="handleClick">Logout</button>
 
       <form>
@@ -38,9 +38,11 @@
 import getUser from '../Composable/getUser'
 import useLogout from "../Composable/useLogout";
 import { useRouter } from "vue-router";
+ 
 export default {
   components: {},
   setup() {
+ 
     const { user } = getUser();
     const { logout } = useLogout();
     const router = useRouter();

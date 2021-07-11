@@ -12,7 +12,7 @@
        href="#" @click="gototab('Confirmorder')" ><i class="fas fa-check-double"></i> Confirmed Orders</a>
     
       <a class="navbar-brand" style="position:relative;right:-600px;"
-       href="#" @click="gototab('Storeprofile')"><i class="fas fa-user"></i> Profile</a>
+       href="#" @click="gototab('Storeprofile')"><i class="fas fa-user"></i> {{user.displayName}}</a>
        
 
     </div>
@@ -25,15 +25,17 @@
 </template>
 
 <script>
+import getUser from '../Composable/getUser'
 import { useRouter } from 'vue-router';
 export default {
   name: "Storehome",
   setup () {
+      const { user } = getUser();
      const router = useRouter()
    const gototab = tab =>{
      router.push({ name : tab})
    }
-   return{ gototab }
+   return{ gototab,user }
       
   }
 }

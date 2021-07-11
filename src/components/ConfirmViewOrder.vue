@@ -1,15 +1,11 @@
 <template>
   <div id="app">
-    <div class="text-uppercase text-bold">Available Items: {{ selected }}</div>
      <div v-if="document">
     <table class="table table-striped table-hover">
       <thead>
         <tr>
           <th>
-            <label class="form-checkbox">
-              <input type="checkbox" v-model="selectAll" @click="select" />
-              <i class="form-icon"></i> clear
-            </label>
+            NO
           </th>
 
           <th>Item name</th>
@@ -22,10 +18,8 @@
       
         <tr v-for="i in document.orderedItems" :key="i">
           <td>
-            <label class="form-checkbox">
-              <input type="checkbox" :value="i.item" v-model="selected" />
-              <i class="form-icon"></i>
-            </label>
+           0
+ 
           </td>
 
           <!--  -->
@@ -46,7 +40,23 @@
       placeholder="Bill amount"
       v-model="bill"
     /><br /><br />
-    <button @click="sendavail">Send</button>
+
+        <label><b>PickUp Time - </b></label
+    >&nbsp;&nbsp;
+    <input
+      required
+      type="time"
+      v-model="time"
+    /><br /><br />
+    
+        <label><b>Date - </b></label
+    >&nbsp;&nbsp;
+    <input
+      required
+      type="date"
+      v-model="date"
+    /><br /><br />
+    <button @click="sendpickup">Send</button>
   </div>
 </template>
 
@@ -57,43 +67,36 @@ import getViewitems from "../Composable/getViewitems"
 import { projectFirestore, projectAuth } from '../Firebase/config'
 
 export default {
-  name: "Vieworder",
+  name: "ConfirmViewOrder",
 
   props: ["id"],
 
   setup(props) {
     const router = useRouter();
     let bill = ref("");
-    let selected = ref([]);
-    let selectAll = ref(false);
+    let time = ref("");
+    let date = ref("");
+    
     const { error, document } = getViewitems(props.id)
-
-    const select = () => {
-      selected.value = [];
-      if (!selectAll.value) {
-        for (let i in props.list.value) {
-          selected.value.push(props.list.value[i].item);
-        }
-      }
-    };
+ 
 
     //sent avail
 
-    const sendavail = async () => {
+    const sendpickup = async () => {
+      
       let user = projectAuth.currentUser;
-      await projectFirestore.collection("notify").add({
+      await projectFirestore.collection("pickup").add({
         availitems: selected.value,
         bill: bill.value,
         store: user.email,
-        storeId: props.id,
-        userId: document.value.userId ,
+        userId: props.id,
         userName: document.value.userName
       });
       alert("Response has sent");
-       router.push('/Store/Temporaryorder');
+       router.push('/Store/Confirmorder');
       
     };
-    return { error, document, sendavail, selected, selectAll, select, bill };
+    return { error, document, bill,time,date ,sendpickup};
   },
 };
 </script>

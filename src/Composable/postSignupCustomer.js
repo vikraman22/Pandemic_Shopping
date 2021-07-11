@@ -16,10 +16,12 @@ const signup = async (email, name, mobile, password,
         if (!res) {
             throw new Error("Could not complete the signup")
         }
+        await res.user.updateProfile({displayName: name})
         await projectFirestore.collection('customer').doc(res.user.uid).set({
             uid: res.user.uid,
             email: res.user.email,
-            name: name,
+
+            name:  res.user.displayName,
             mobile: mobile,
             password: password,
             locality: locality,

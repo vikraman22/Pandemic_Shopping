@@ -1,5 +1,5 @@
 <template>
-  <div v-if="noorder">
+  <div v-if="!documents">
     <h2 style="font-weight: bold; color: grey">
       You have 0 Notification .. Wait somemore time
     </h2>
@@ -7,60 +7,62 @@
     <br /><br />
   </div>
   <div v-else>
-    <div v-if="hide">
-      <div class="alert alert-success" role="alert">
-        <h4 class="alert-heading">Available items in your list</h4>
+    <h4 class="alert-heading" style="color: crimson; font-weight: bold">
+      Available items in your list
+    </h4>
+
+    <center>
+      <div class="content">
         <table class="table">
           <thead>
-            <tr>
-              <th scope="col">#</th>
-              <th scope="col">First</th>
+            <tr class="table-dark">
+              <th scope="col">No</th>
+              <th scope="col">Item</th>
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <th scope="row">1</th>
-              <td>Mark</td>
+            <tr class="table-success" v-for="(i, index) in documents" :key="i">
+              <th scope="row">{{ index }}</th>
+              <td>{{ i }}</td>
             </tr>
           </tbody>
         </table>
       </div>
-      <center>
-        <p class="bill">Bill amount for Available Items - {{}}</p>
-      </center>
-      <br /><br />
-
-      <button
-        type="button"
-        class="btn btn-secondary accept"
-        data-bs-toggle="tooltip"
-        data-bs-placement="top"
-        title="Note : It will confirm your order"
-      >
-        ACCEPT
-      </button>
-      <button
-        type="button"
-        class="btn btn-secondary decline"
-        data-bs-toggle="tooltip"
-        data-bs-placement="top"
-        title="Note : It will Cancel your current order"
-      >
-        DECLINE
-      </button>
-    </div>
+    </center>
   </div>
+
+  <button
+    type="button"
+    @click="accept"
+    class="btn btn-secondary accept"
+    data-bs-toggle="tooltip"
+    data-bs-placement="top"
+    title="Note : It will confirm your order"
+  >
+    ACCEPT
+  </button>
+  <button
+    type="button"
+    @click="decline"
+    class="btn btn-secondary decline"
+    data-bs-toggle="tooltip"
+    data-bs-placement="top"
+    title="Note : It will Cancel your current order"
+  >
+    DECLINE
+  </button>
 </template>
 
 <script>
+import getNotify from "../Composable/getNotify";
 import { ref } from "vue";
 export default {
   name: "Notification",
   setup() {
-    let hide = ref(true);
     let noorder = ref(false);
+    const { error, documents } = getNotify();
 
-    return { noorder, hide };
+    return { noorder, error, documents };
   },
 };
 </script>
@@ -83,11 +85,8 @@ export default {
   border-radius: 10px;
   padding: 6px 12px;
 }
-.bill {
-  background-color: powderblue;
-  padding: 20px 20px;
-  width: 50%;
-  height: 50%;
-  font-weight: bold;
+.content {
+  width: 800px;
+  padding: 30px;
 }
 </style>
