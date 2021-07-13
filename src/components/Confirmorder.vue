@@ -1,88 +1,52 @@
-<template>
-  <div class="nav">
-    <div
-      class="btn-group"
-      role="group"
-      aria-label="Basic radio toggle button group"
-    >
-      <input
-        type="radio"
-        class="btn-check"
-        name="btnradio"
-        id="btnradio1"
-        autocomplete="off"
-        checked
-      />
-      <label
-        class="btn btn-outline-success"
-        @click="togglemin"
-        for="btnradio1"
-        ><div class="text">MINIMUM&nbsp;ORDER</div></label
-      >
-      <input
-        type="radio"
-        class="btn-check"
-        name="btnradio"
-        id="btnradio2"
-        autocomplete="off"
-      />
-      <label class="btn btn-outline-success" @click="toggleview" for="btnradio2"
-        ><div class="text">MAXIMUM&nbsp;ORDER</div></label
-      >
+ <template>
+ <h4 style="color:green;font-weight:bold">ORDERS</h4>
+  <div class="row row-cols-1 row-cols-md-3 g-4" >
+  <div v-for="i in orderedUsers" :key="i.id">
+    <div class="card border-success mb-3" style="max-width: 18rem">
+      <div class="card-header"  style="font-weight:bold;">ORDER DETAILS</div>
+      <div class="card-body text-dark">
+      
+        <p class="card-text" style="font-weight:bold;">
+           <img src="../assets/confirm.jpg"  class="card-img-top"><br>
+           No of items - {{i.totalItems}}
+        </p>
+          <p class="card-title" style="font-size:12px;">Customer Name - {{i.userName}}</p>
+            <router-link :to="{name: 'ConfirmViewOrder', params:{id: i.id}}">
+          <div class="card-footer bg-transparent border-success"><Button>View order</Button></div>
+            </router-link>
+             <div class="card-footer bg-transparent border-success" @click="completed(i.id)"><Button><i class="fas fa-check-circle"></i> Complete order</Button></div>
+      </div>
+    </div>
     </div>
   </div>
-
-  <!-- min & max -->
-<div v-if="viewmin">  <Cmin/> </div>
-<div v-else> <Cmax/></div>
- 
-
-
 </template>
 
 <script>
-import {ref} from 'vue'
-import Cmin from '../components/Cmin.vue'
-import Cmax from '../components/Cmax.vue'
+ 
+import { projectAuth,projectFirestore } from "../Firebase/config";
+import getCorders from "../Composable/getViewcorder";
+ 
 export default {
   name: "Confirmorder",
-  components:{Cmin,Cmax},
-  setup() {
-     let viewmin =ref(true)
-     let viewmax =ref(false)
-
-     const toggleview = () =>{
-       viewmin.value =false
-       viewmax.value =true
-     }
-     const togglemin = () =>{
-       viewmin.value =true
-       viewmax.value =false
-     }
-
-     return {toggleview,viewmin,viewmax,togglemin}
-  },
+  setup(){
+      
+    let user = projectAuth.currentUser;
+    //console.log("in uswr of min page", user);
+    const { error, orderedUsers } = getCorders( user.email)
+    const completed = async (id) =>{
+      await projectFirestore.collection("corders").doc(id).delete()
+      alert("Order Completed Successfully")
+    }
+    return { error, orderedUsers,completed }
+  }
 };
 </script>
 
-<style>
-.nav {
-  position: relative;
-  top: -60px;
-  height: 61px;
-  width: 976px;
-}
-.btn {
-  padding-right: 320px;
-  position: relative;
-  color: rgb(0, 0, 0);
-}
-.text {
-  text-align: center;
-  position: relative;
-  text-align: center;
-  top: 12px;
-  font-size: 18px;
-  left: 140px;
+<style scoped>
+Button{
+  color:white;
+  background-color:green;
+  border-radius: 4px;
+  text-transform: uppercase;
 }
 </style>

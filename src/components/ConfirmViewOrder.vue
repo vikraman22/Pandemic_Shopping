@@ -1,13 +1,11 @@
 <template>
   <div id="app">
+    <h4>FINAL ORDER DETAILS</h4>
      <div v-if="document">
     <table class="table table-striped table-hover">
       <thead>
         <tr>
-          <th>
-            NO
-          </th>
-
+           
           <th>Item name</th>
           <th>Quantity</th>
           <th>Unit</th>
@@ -16,12 +14,8 @@
      
       <tbody>
       
-        <tr v-for="i in document.orderedItems" :key="i">
-          <td>
-           0
- 
-          </td>
-
+        <tr v-for="i in document.availitems" :key="i">
+           
           <!--  -->
           <td>{{ i.item }}</td>
           <td>{{ i.quan }}</td>
@@ -29,42 +23,18 @@
         </tr>
      
       </tbody>
-     
     </table>  
-  </div>
-    <label><b>Enter bill amount for available items *</b></label
-    >&nbsp;&nbsp;
-    <input
-      required
-      type="number"
-      placeholder="Bill amount"
-      v-model="bill"
-    /><br /><br />
-
-        <label><b>PickUp Time - </b></label
-    >&nbsp;&nbsp;
-    <input
-      required
-      type="time"
-      v-model="time"
-    /><br /><br />
     
-        <label><b>Date - </b></label
-    >&nbsp;&nbsp;
-    <input
-      required
-      type="date"
-      v-model="date"
-    /><br /><br />
-    <button @click="sendpickup">Send</button>
+  </div>
+  
   </div>
 </template>
 
 <script>
 import { ref } from "vue";
 import { useRouter } from "vue-router";
-import getViewitems from "../Composable/getViewitems"
-import { projectFirestore, projectAuth } from '../Firebase/config'
+import getcViewitems from "../Composable/getcViewitems";
+import { projectFirestore, projectAuth } from "../Firebase/config";
 
 export default {
   name: "ConfirmViewOrder",
@@ -76,27 +46,25 @@ export default {
     let bill = ref("");
     let time = ref("");
     let date = ref("");
-    
-    const { error, document } = getViewitems(props.id)
- 
+
+    const { error, document } = getcViewitems(props.id);
 
     //sent avail
 
     const sendpickup = async () => {
-      
       let user = projectAuth.currentUser;
       await projectFirestore.collection("pickup").add({
-        availitems: selected.value,
         bill: bill.value,
         store: user.email,
-        userId: props.id,
-        userName: document.value.userName
+        OrderDocId: props.id,
+        time: time.value,
+        date: date.value,
+        userName: document.value.userName,
       });
       alert("Response has sent");
-       router.push('/Store/Confirmorder');
-      
+      router.push("/Store/Confirmorder");
     };
-    return { error, document, bill,time,date ,sendpickup};
+    return { error, document, bill, time, date, sendpickup };
   },
 };
 </script>

@@ -17,7 +17,7 @@ const getNotify = () => {
         });
         ;
         // update values
-      documents.value = {...results[0].availitems,Bill_amount_for_available_items :results[0].bill}
+      documents.value = results
         error.value = null
     }, err => {
         console.log(err.message)

@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <div class="text-uppercase text-bold">Available Items: {{ selected }}</div>
+     
      <div v-if="document">
     <table class="table table-striped table-hover">
       <thead>
@@ -23,12 +23,13 @@
         <tr v-for="i in document.orderedItems" :key="i">
           <td>
             <label class="form-checkbox">
-              <input type="checkbox" :value="i.item" v-model="selected" />
+              <input type="checkbox" :value="i" v-model="selected" />
               <i class="form-icon"></i>
             </label>
           </td>
 
           <!--  -->
+           
           <td>{{ i.item }}</td>
           <td>{{ i.quan }}</td>
           <td>{{ i.unit }}</td>
@@ -46,7 +47,7 @@
       placeholder="Bill amount"
       v-model="bill"
     /><br /><br />
-    <button @click="sendavail">Send</button>
+    <button @click="send_avail">Send</button>
   </div>
 </template>
 
@@ -79,13 +80,13 @@ export default {
 
     //sent avail
 
-    const sendavail = async () => {
+    const send_avail = async () => {
       let user = projectAuth.currentUser;
       await projectFirestore.collection("notify").add({
         availitems: selected.value,
         bill: bill.value,
         store: user.email,
-        storeId: props.id,
+        OrderDocId: props.id,
         userId: document.value.userId ,
         userName: document.value.userName
       });
@@ -93,7 +94,7 @@ export default {
        router.push('/Store/Temporaryorder');
       
     };
-    return { error, document, sendavail, selected, selectAll, select, bill };
+    return { error, document, send_avail, selected, selectAll, select, bill };
   },
 };
 </script>

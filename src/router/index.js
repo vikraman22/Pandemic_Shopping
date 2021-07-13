@@ -82,18 +82,10 @@ const routes = [
        {
         path: '/Store/Confirmorder',
         name: 'Confirmorder',
-        component: () => import('../components/Confirmorder.vue')
-       },
-       {
-        path: '/Store/Confirmorder/minimum',
-        name: 'Cmin',
-        component: () => import('../components/Cmin.vue')
-       },
-       {
-        path: '/Store/Confirmorder/maximum',
-        name: 'Cmax',
-        component: () => import('../components/Cmax.vue')
-       },
+        component: () => import('../components/Confirmorder.vue'),
+        props: true
+      },
+       
        {
         path: '/Store/Vieworder',
         name: 'Vieworder',
@@ -102,7 +94,7 @@ const routes = [
        },
        {
         path: '/Store/ConfirmVieworder',
-        name: 'ConfirmVieworder',
+        name: 'ConfirmViewOrder',
         component: () => import('../components/ConfirmViewOrder.vue'),
         props: true
        },

@@ -1,21 +1,14 @@
 import { ref, watchEffect } from 'vue'
 import { projectFirestore } from '../Firebase/config.js'
 
-const getCorders = (cond, storename) => {
+const getCorders = ( storename) => {
 
     const error = ref(null)
     const orderedUsers = ref(null)
 
     let collectionRef = projectFirestore.collection("corders")
         .where("store", "==", storename)
-    
-    if(cond==true){
-        collectionRef = collectionRef.where('totalItems', "<=", 10)
-            
-    }
-    else{
-        collectionRef = collectionRef.where('totalItems', ">", 10)
-    }
+   
 
     const unsub = collectionRef.onSnapshot(snap => {
         let results = []
